@@ -1,0 +1,91 @@
+{% include "yalladevelop/header.html" %}
+
+<div class="row">
+          <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">Ranking</h1>
+              <p class="text-center">
+
+<div class="tabbable full-width-tabs">
+	<br/>
+	<br/>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-one" data-toggle="tab"><i class="fa fa-group"></i> Top 10 Users</a></li>
+                <li><a href="#tab-two" data-toggle="tab"><i class="fa fa-suitcase"></i> Top 10 Companies</a></li>
+                <li><a href="#tab-three" data-toggle="tab"><i class="fa fa-cogs"></i> Top 10 projects</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-one">
+                <br>
+               
+					
+				   <p> Our community is collaborative and competitive too! Here are the most active users. <br/>
+				   	In order to increase the competetion for developers, users that complete projects get points.<br/>
+				   	This doesn't mean that they are the best, but definitely the most active!</p>
+				   	{% if top_users %}
+				   		
+				   		{% for u in top_users %}
+				   		     <div class="col-md-5">
+				   			<div class="hopetherectangleworks2"><img src="{{STATIC_URL}}yalladevelop/Images/team/ray.jpg" width="50" height="50"/><a href="/profile/{{u.user.id}}"> {{u.name}}  &nbsp; &nbsp;  Score: {{u.points}} </a> </div></div>
+				   		{% endfor %}
+				   		
+				   	{% else %}
+				   		<h6> No users made it to the high scores yet. </h6>
+				   	{% endif %}
+
+                </div>
+				
+            <div class="tab-pane" id="tab-two">
+            <br>
+               
+           <p> Our great partners companies fund the projects. Here are the most funding providers: </p>
+             {% if top_companies %}
+		      
+
+   {% for c in top_companies %}
+				   		     <div class="col-md-5">
+				   			<div class="hopetherectangleworks2"><img src="{{STATIC_URL}}yalladevelop/Images/team/ray.jpg" width="50" height="50"/><a href="/profile/{{u.user.id}}"> {{c.name}}  &nbsp; &nbsp;  Score: {{c.points}} </a> </div></div>
+				   		{% endfor %}
+				   		
+				   	{% else %}
+				   		<h6> No users made it to the high scores yet. </h6>
+				   	{% endif %}
+
+
+            </div>  
+		    
+		    <div class="tab-pane" id="tab-three">
+		    <br>
+                
+				<p> Great ideas derive great projects, here are the top ten projects that YallaDevelop visitors liked: </p>
+
+					{% if top_projects %}
+						 
+				
+   {% for p in top_projects %}
+				   		     <div class="col-md-5">
+				   			<div class="hopetherectangleworks2"><img src="{{STATIC_URL}}yalladevelop/Images/team/ray.jpg" width="50" height="50"/><a href="/profile/{{u.user.id}}"> {{p.name}}  &nbsp; &nbsp; <i class="fa fa-heart"></i> {{p.likes}} </a> </div></div>
+				   		{% endfor %}
+				   		
+				   	{% else %}
+				   		<h6> No users made it to the high scores yet. </h6>
+				   	{% endif %}
+				                </div>
+				
+            </div> 
+        </div> <!-- /tabbable -->
+
+
+		<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+
+</p>
+</div>
+</div>
+</div>
+
+
+<br> <br><br> <br>
+
+{% include "yalladevelop/footer.html" %}

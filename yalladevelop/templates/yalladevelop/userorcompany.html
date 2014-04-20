@@ -1,0 +1,37 @@
+{% include "yalladevelop/header.html" %}
+{% load staticfiles%}
+<div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">Welcome!</h1>
+
+<br/>
+<h4 class="text-center">Who do you want to sign up as?</h4>
+<ul>
+	
+	<br/>
+	<br/>
+	 
+	 <table>
+	 <tr>
+	 	<td><a href='/user-signup'><center><img
+					 src= "{% static "cosmo/img/c.png" %}"  style="width:200px;height:200px;"></center><h5><center>Individual</h5></a> </center>
+				 	<p> Members that can post projects and donate skills</p>
+					 </td>
+		<td>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp</td>
+	 	<td><a href='/company-signup'><center><img
+					 src= "{% static "cosmo/img/o.png" %}"  style="width:200px;height:200px;"><h5></center><center>Company</h5></a></center>
+					 <p> Members that represent an official registered company that can fund and support creative projects </p></td>
+	 </tr>
+        </table>
+		<br/>
+		<br/>
+		<br/>
+	
+
+
+</ul>
+</div>
+</div>
+
+
+{% include "yalladevelop/footer.html" %}

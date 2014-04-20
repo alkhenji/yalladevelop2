@@ -1,0 +1,106 @@
+{% include "yalladevelop/header.html" %}
+{% load staticfiles %}
+<div class="secHeader">
+
+	
+	<img src="{% url 'getProfilePicture' user.id %}">
+	
+	{% comment %}
+	{% if has_image %}
+		<img src="{% url 'getProfilePicture' user.id %}">
+	{% else %}
+		<img src= "{% static "cosmo/img/c.png" %}" style="width:200px;height:200px;">
+	{% endif %}
+	{% endcomment %}
+	
+	<center><h1>Profile</h1></center>
+	<br/>
+	<br/>
+            
+<h4>
+	<table cellpadding="7px" cellspacing="10px">
+		<tr>
+			<td rowspan="8">    <img src= "{% static "cosmo/img/c.png" %}" style="width:200px;height:200px;"> <input type="file"  name="datafile" ></td>
+			<td height="30"><b>Name </b></td>
+			<td height="30">{{ userProfile.name }}<br/></td>
+		</tr>
+		
+		<tr>
+			<td height="30"><b>UserName </b></td>
+			<td height="30">{{ userProfile.user }}</td>
+		</tr>
+		
+		<tr>
+			<td height="30"><b>Email </b></td>
+			<td height="30"> {{ userAccount.email }}</td>
+		</tr>
+		
+		<tr>
+			<td height="30"><b>Premium?</b></td>
+			{% if userProfile.is_premium %}
+				<td height="30"> <img class="img-responsive"  alt="123" src= "{% static "cosmo/img/checkc.png" %}" style="width:30px;height:30px;"></td>
+			{%else%}
+				<td height="30"> <img class="img-responsive"  alt="123" src= "{% static "cosmo/img/xy.png" %}"  style="width:30px;height:30px;"></td>
+			{% endif %}
+		</tr>
+		
+		<tr>
+			<td height="30"><b>Company? </b></td>
+			{% if userProfile.is_company  %}
+				<td height="30"> <img class="img-responsive"  alt="123" src= "{% static "cosmo/img/checkc.png" %}" style="width:30px;height:30px;"></td> 
+			{%else%}
+				<td height="30"> <img class="img-responsive"  alt="123" src= "{% static "cosmo/img/xy.png" %}"  style="width:30px;height:30px;"></td>
+			{% endif %}
+		</tr>
+		
+		<tr>
+			<td height="30"><b>Skills </b> </td>
+			<td height="30">
+				{% for s in skills%}
+					{% if s.name == "Python" %}
+						<i class="icon-python" style="font-size: 2em;"></i>
+					{% elif s.name == "Java" %}
+						<i class="icon-java" style="font-size: 2em;"></i>
+					{% elif s.name == "C" %}
+						<i class="icon-c" style="font-size: 2em;"></i>
+					{% elif s.name == "Ruby" %}
+						<i class="icon-ruby-on-rails-alt" style="font-size: 2em;"></i>
+					{%elif s.name == "HTML" %}
+						<i class="icon-html" style="font-size: 2em;"></i>
+					{%elif s.name == "PHP" %}
+						<i class="icon-php" style="font-size: 2em;"></i>
+					{%elif s.name == "ASP" %}
+						<i class="icon-aws" style="font-size: 2em;"></i>
+					{%elif s.name == "Perl" %}
+						<i class="icon-perl" style="font-size: 2em;"></i>
+					{%elif s.name == "Adobe" %}
+						<i class="icon-splatter" style="font-size: 2em;"></i>
+					{%else%}
+						{{ s.name }}
+					{% endif %}
+				{% endfor %}
+			</td>
+		</tr>
+		
+		<tr>
+			<td height="30"><b>Points </b></td>
+			<td height="30">{{ userProfile.points }}</td>
+		</tr>
+		
+		<td height="100">
+			<a class="btn btn-primary" value="Go Back" onClick="javascript:history.go(-1);">Go Back</a></td>
+			{% if my_profile %}
+				<td height="50"><a class="btn btn-primary" href="/profile_settings">Edit Profile</a></td>
+				<td height="50"> <a class="btn btn-primary" href="/track/">Track My Projects</a> </td>
+			{% endif %}
+	</table>
+</h4>
+
+	<br/>
+	<br/>
+	<br/>
+
+</div>
+
+
+{% include "yalladevelop/footer.html" %}

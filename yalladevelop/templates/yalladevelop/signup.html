@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+{% include "yalladevelop/header.html" %}
+
+{% if usersignup %}
+	<h2> Signup as an Individual: </h2>
+	<p>Signing up with YallaDevelop will allow you to post prjects and get it funded. Also, you will be able to be part of projects and teams by donating skills to other projects, the more contribution you make the higher your ranking score will be. </p>
+{% else %}
+	<h2> Signup as an Company: </h2>
+	<p> We help you contribute to the community, as a company your role in developing community where you exist is cruical. With your knowledge and experince you can spot the ambitious and creative project owners, track their projects and fund it! <br/><br/>
+		YallaDevelop could really help improve your community reputation and help you to raise to the top ranking of contributing companies. Join YallaDevelop and fund the projects that are innovative and beneficial to you and the community. <br/><br/>
+		Unfortunately, companies can't post projects for funding, we are looking forward to improve the chances of those in need rather than help companies. </p><br/>
+{% endif %}
+	
+	<!--
+	<div id="user_images">
+		<form action="/user_upload/" class="dropzone" id="user_uploader">
+		  <div class="fallback">
+		    <input name="file" type="file" />
+		  </div>
+		</form>
+	</div>
+	-->
+	
+	<!--img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcwIiB5PSI3MCIgc3R5bGU9ImZpbGw6I2FhYTtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtZmFtaWx5OkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjE0MHgxNDA8L3RleHQ+PC9zdmc+" style="width: 140px; height: 140px;"-->
+	
+	<div class="row">
+		<form action="" method="post" id="user_uploader" enctype="multipart/form-data">
+			<div class="col-md-4">
+				<!--div id="user_image_preview">No image uploaded yet</div-->
+				<!--input name="image" type="file"/-->
+			</div>
+			
+			<!--div class="col-md-8"-->
+				<div class="jumbotron">
+					<div id="user_signup_form">
+						{{ form.as_p }}
+					</div>
+					<input class="btn btn-success" type="submit" value="Create Account">
+				</div>
+			<!--/div-->
+		</form>
+	</div>
+	<br/>
+
+
+{% include "yalladevelop/footer.html" %}

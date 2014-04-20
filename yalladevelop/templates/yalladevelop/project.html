@@ -1,0 +1,138 @@
+{% include "yalladevelop/header.html" %}
+
+
+
+
+<div class="row">
+	
+	<img src="{% url 'getProjectPicture' project.id %}">
+	
+	
+          <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">{{ project }}</h1>
+              <p class="text-center">
+
+
+{% if my_project %}
+	            <h4><a href="edit">[ Edit Project ]</a></h4>
+              {% endif %}
+              <p class="text-center">
+
+<br>
+<p><strong>Developed by </strong>{{ owner }} </p>
+<p><strong>Description by </strong>{{ project.description }} </p>
+<p><strong>Target Money:</strong> ${{ project.target_money }} </p>
+<p><strong>Money Collected: </strong>${{ project.money_collected }} </p>
+<p><strong><i class="fa fa-heart"></i> </strong>{{ project.likes }} </p>
+	
+
+<div class="progress progress-striped active">
+	<div class="progress-bar" style="width: {{progress}}%;">{{progress}}% Completed</div>
+</div>
+
+{% if logged_in and not liked %}
+	<a class="btn btn-danger" href="/project/{{project.id}}/likeProject">I like This!</a>
+{% else %}
+	<button disabled class="btn btn-danger">Already Liked</button>
+{% endif %}
+
+
+{% if complete %}
+	<input type="button" disabled class="btn btn-default" value="Can't help (Project is Complete)">
+	<input type="button" disabled class="btn btn-success" value="Can't Donate (Project is Complete)">
+{% else %}
+	{% if not is_company %}
+		{% if logged_in and not helped %}
+			<a class="btn btn-default" href="/project/{{project.id}}/helpProject">I Can Help!</a>
+		{% elif logged_in and helped %}
+			<a class="btn btn-warning" onClick="confirm('Are you sure you want to be removed from the developers list?')" href="/project/{{project.id}}/helpProject">I Don't Wanna Help!</a>
+		{% endif %}
+	{% endif %}
+	<a class="btn btn-success" href="/project/{{project.id}}/donate">I Will Donate!</a>
+{% endif %}
+
+<br/><br/>
+
+
+<div class="tabbable full-width-tabs">
+
+	<br/>
+	<br/>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-one" data-toggle="tab"><i class="fa fa-group"></i> Developers </a></li>
+                <li><a href="#tab-two" data-toggle="tab"><i class="fa fa-suitcase"></i> Funders </p></a></li>
+                <li><a href="#tab-three" data-toggle="tab"><i class="fa fa-cogs"></i> Discussion</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-one">
+                <br>
+
+				  <p> {%for heeha in helpers %}
+                       <a href="/profile/{{heeha.user.id}}"> {{heeha.name}} </a>
+                      {% endfor %} </p>
+                      Total developers: {{ project.helpers.count }}
+                </div>
+				
+            <div class="tab-pane" id="tab-two">
+            <br>
+               
+          <p> {%for heeha in funders %}
+                     <a href="/profile/{{heeha.user.id}}"> {{heeha.name}}</a>
+                      {% endfor %}
+                       </p>
+                       Total funders: {{ project.funders.count }}
+                      </div>
+		    <div class="tab-pane" id="tab-three">
+		    <br>
+                
+				<div class="comment_box">
+	
+	<ul>
+		{% if comments %}
+			<ul>
+				{% for c in comments %}
+				<li>
+					<div class="commentUser">{{c.username}} says:{{c.comment}}</div>
+				</li>
+				{% endfor %}
+			</ul><br/>
+		{% else %}
+			<p>Be the first to reflect upon this project!</p><br/>
+		{% endif %}
+		
+		{% if logged_in %}
+			<div id="comment_form">
+				<form action="/post_comment/" method="POST">
+					Logged in as: {{userProfile.name}}
+					<input hidden name="username" value="{{username}}">
+					<input hidden name="userId" value="{{userProfile.id}}">
+					<input hidden name="projectId" value="{{project.id}}">
+					<textarea name="comment" class="form-control" id="textArea" rows="1" cols="60"></textarea><br/>
+					<input class="btn btn-info" type="submit" value="Post Comment" />
+					{% csrf_token %}
+				</form>
+			</div>
+		{% else %}
+			<p>Please Login to be able to comment</p>
+		{% endif %}
+	</ul>
+</div>
+				
+				                </div>
+				
+            </div> 
+        </div> <!-- /tabbable -->
+
+
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+</p>
+</div>
+</div>
+</div>
+
+
+
+{% include "yalladevelop/footer.html" %}

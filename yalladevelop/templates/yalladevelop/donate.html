@@ -1,0 +1,28 @@
+{% include "yalladevelop/header.html" %}
+
+  <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">Donate</h1>
+<form action="/project/{{project.id}}/donate/" method="post">
+	{% csrf_token %}
+	{% if logged_in %}
+		<h6>Logged in as: <strong>{{user}}</strong></h6>
+	{% else %}
+		<div class="alert alert-dismissable alert-warning">
+		  <button type="button" class="close" data-dismiss="alert">x</button>
+		  <h4>Hello Guest!</h4>
+		  <p>Why not make an account to get points?</p>
+		</div>
+	{% endif %}
+	
+	<h6>Project Name: {{ project.name }}</h6>
+	<h6>Project Owned By: {{ owner }}</h6>
+	<div id="donate_form">{{form.as_p}}</div>
+	<button onClick="confirm('Are you sure this is the correct amount?')"class="btn btn-success" type="submit">Donate</button>
+</form>
+<br/>
+</div>
+</div>
+
+
+{% include "yalladevelop/footer.html" %}

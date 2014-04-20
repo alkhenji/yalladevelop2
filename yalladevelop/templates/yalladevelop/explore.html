@@ -1,0 +1,36 @@
+{% include "yalladevelop/header.html" %}
+<div class="row">
+          <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">Explore</h1>
+              <p class="text-center">
+
+
+<p> View all the projects that are currently going on YallaDevelop. We host projects from the East to the West. Creative websites and innovative projects are  what we are host and raise fund for! </p>
+<p> It is here on YallaDevelop, that developers, content creators and funders all get together to produce out-of-the box ideas and uniques projects. Explore the hub of innovtions within applications and websites to enrich yourself with our smart projects owners' ideas. </p>
+
+
+  
+      {% for project in projects %}
+        <div class="col-md-4">
+        <div class="hoping"
+        <p><strong>{{project.name}}</p></strong>
+        <img src="{{STATIC_URL}}yalladevelop/Images/team/Nihal.jpg" width="180" height="100" / >
+          <i class="fa fa-heart "></i> </strong> {{ project.likes }}
+          <strong> Target</strong> ${{ project.target_money}}
+          <p>{{project.description}}</p>
+          <p><a class="btn btn-default" href="/project/{{project.id}}" role="button">View details &raquo;</a></p>
+        </div>
+        <br><br>
+        </div><!-- /.col-lg-4 -->
+          {% endfor %}
+  
+
+<br/><br/>
+</p>
+</div>
+</div>
+</div>
+
+
+{% include "yalladevelop/footer.html" %}

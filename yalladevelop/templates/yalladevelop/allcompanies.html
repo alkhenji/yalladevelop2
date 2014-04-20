@@ -1,0 +1,50 @@
+{% include "yalladevelop/header.html" %}
+
+<div class="row">
+          <div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">Browse Companies</h1>
+              <p class="text-center">
+
+
+<p> YallaDevelop is all about building a creaive and connected technological community. We bridge project owners and funers in one place. <br/>
+Our partners companies plays a major role in sustaining the community and funding the project hosted on YallaDevelop. Here is a list of our valuable partners </p>
+
+
+{% for c in users %}
+        <div class="col-md-4">
+        <div class="hoping">
+        <img src="{{STATIC_URL}}yalladevelop/Images/team/No.jpg" width="180" height="100" / >
+        <p><strong>{{c.name}}</p></strong>
+          <p><a class="btn btn-default" href="/profile/{{c.user.id}}" role="button">View details &raquo;</a></p>
+        </div>
+        <br><br>
+        </div><!-- /.col-lg-4 -->
+          {% endfor %}
+
+<ul class="pagination">
+	{% if users.has_previous %}
+		<li><a href="?page={{ users.previous_page_number }}">«</a></li>
+	{% else %}
+		<li class="disabled"><a href="#">«</a></li>
+	{% endif %}
+	{% for i in paginator.page_range %}
+		{% if forloop.counter == users.number %}
+			<li class="active"><a href="/allcompanies/?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+		{% else %}
+			<li><a href="/allcompanies/?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+		{% endif %}
+	{% endfor %}
+	{% if users.has_next %}
+		<li><a href="?page={{ users.next_page_number }}">»</a></li>
+	{% else %}
+		<li class="disabled"><a href="#">»</a></li>
+	{% endif %}	
+</ul>
+</p>
+</div>
+</div>
+</div>
+
+
+{% include "yalladevelop/footer.html" %}

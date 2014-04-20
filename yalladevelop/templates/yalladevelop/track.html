@@ -1,0 +1,56 @@
+{% include "yalladevelop/header.html" %}
+
+<div class="col-md-12">
+            <div class="secHeader">
+              <h1 class="text-center">Track projects</h1>
+
+
+{% if not is_company %}
+	<h4> My Projects: </h4>
+	
+	{%for heeha in my_projects %}
+        <div class="col-md-4">
+        <div class="hoping">
+        <img src="{{STATIC_URL}}yalladevelop/Images/team/N.jpg" width="180" height="100" / >
+        <p><strong>{{heeha.name}}</p></strong>
+          <p><a class="btn btn-default" href="/project/{{heeha.id}}" role="button">View details &raquo;</a></p>
+        </div>
+        
+        </div><!-- /.col-lg-4 -->
+          {% endfor %}
+		
+	<h4> Projects I'm Helping: </h4>
+	
+	
+		{%for heeha in helping %}
+        <div class="col-md-4">
+        <div class="hoping">
+        <img src="{{STATIC_URL}}yalladevelop/Images/team/N.jpg" width="180" height="100" / >
+        <p><strong>{{heeha.name}}</p></strong>
+          <p><a class="btn btn-default" href="/project/{{heeha.id}}" role="button">View details &raquo;</a></p>
+        </div>
+        
+        </div><!-- /.col-lg-4 -->
+          {% endfor %}
+
+</ul>
+	<h4> Projects I'm Funding: </h4>
+	
+		{%for heeha in funding %}
+        <div class="col-md-4">
+        <div class="hoping">
+        <img src="{{STATIC_URL}}yalladevelop/Images/team/N.jpg" width="180" height="100" / >
+        <p><strong>{{heeha.name}}</p></strong>
+          <p><a class="btn btn-default" href="/project/{{heeha.id}}" role="button">View details &raquo;</a></p>
+        </div>
+        
+        </div><!-- /.col-lg-4 -->
+          {% endfor %}
+		
+{% endif %}
+</ul>
+</div>
+</div>
+
+
+{% include "yalladevelop/footer.html" %}

@@ -1,0 +1,167 @@
+{% include "yalladevelop/header.html" %}
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+      
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+            {% if logged_in %}
+            <h2> Meet a Member </h2><br> <h4> <a href="/profile/{{random_member.user.id}}">{{random_member}}</a> </h4>
+            {% else %}
+              <h1> Join the innovative communty. </h1>
+              <p>Your idea, our help.</p>
+            
+              <p><a class="btn btn-lg btn-info" href="/userorcompany/" role="button"> Yalla start here! </a></p>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
+    </div><!-- /.carousel 
+
+
+<!--<ul class="slides">
+
+
+   
+  
+{% for project in hot_projects %}
+    <input type="radio" name="radio-btn" id="img-{{ forloop.counter }}" checked />
+    <li class="slide-container">
+    <div class="slide">
+    <a href="/terms"> <img src="{{STATIC_URL}}/yalladevelop/Images/feed/{{forloop.counter}}.jpg"/></a>
+
+
+
+   <div id= "h12"><span>Project Name: {{project.name}}
+<span class='spacer'></span><br /><span class='spacer'></span>Description: {{project.description}} </span></div>
+        </div>
+    <div class="nav">
+
+    {% if forloop.first %}
+      <label for="img-6" class="prev">&#x2039;</label>  
+      <label for="img-2" class="next">&#x203a;</label>
+    {%elif forloop.last %}
+      <label for="img-4" class="prev">&#x2039;</label>  
+      <label for="img-6" class="next">&#x203a;</label>
+
+    {%elif forloop.counter|divisibleby:"4" %}
+       <label for="img-3" class="prev">&#x2039;</label>  
+      <label for="img-5" class="next">&#x203a;</label>
+
+    {%elif forloop.counter|divisibleby:3 %}
+       <label for="img-2" class="prev">&#x2039;</label>  
+      <label for="img-4" class="next">&#x203a;</label>
+
+    {%else%}
+     <label for="img-1" class="prev">&#x2039;</label>  
+      <label for="img-3" class="next">&#x203a;</label>
+
+    {%endif%}
+    </div>
+    </li>
+
+  
+  {% endfor %}
+
+    <input type="radio" name="radio-btn" id="img-6" checked />
+    <li class="slide-container">
+    <div class="slide">
+    <img src="{{STATIC_URL}}templatemo_390_powerful/images/feed/6.jpg" / >
+
+     <div id="indexslider"> Your innovative idea starts here. <br><a class="btn btn-primary" href="/userorcompany">Signup</a> <br>
+     <br>
+     <br> </div> 
+    <div id="indexslider2">Scroll right to see our hottest Projects </div> 
+
+        </div>
+    <div class="nav">
+      <label for="img-5" class="prev">&#x2039;</label>  
+      <label for="img-1" class="next">&#x203a;</label>
+      </div>
+    </li>
+
+
+    <li class="nav-dots">
+      <label for="img-1" class="nav-dot" id="img-dot-1"></label>
+      <label for="img-2" class="nav-dot" id="img-dot-2"></label>
+      <label for="img-3" class="nav-dot" id="img-dot-3"></label>
+      <label for="img-4" class="nav-dot" id="img-dot-4"></label>
+      <label for="img-5" class="nav-dot" id="img-dot-5"></label>
+      <label for="img-6" class="nav-dot" id="img-dot-6"></label>
+    </li>
+</ul>
+
+ 
+-->
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+    <div id= "Indexheader"><h3>&nbsp; <i class="fa fa-star"></i> Featured Projects </h3></div> <br>
+      {% for project in featured_projects %}
+        <div class="col-lg-4">
+          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <p><strong>{{project.name}}</p></strong>
+          <p>{{project.description}}</p>
+          <p><a class="btn btn-default" href="/project/{{project.id}}" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+          {% endfor %}
+          
+      </div><!-- /.row -->
+</div>
+
+     
+
+
+
+
+
+	
+		<h6>Project Name:  </h6>
+
+	
+<h5>Hot Projects:</h5>
+	
+	{% for project in hot_projects %}
+		<h6>Project Name: {{project.name}}, Likes: {{project.likes}}</h6>
+	{% endfor %}
+	
+
+	
+{% include "yalladevelop/footer.html" %}

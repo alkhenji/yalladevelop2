@@ -3,14 +3,14 @@
 <div class="secHeader">
 
 	
-	<img src="{% url 'getProfilePicture' user.id %}">
+	<img src="{% url 'getProfilePicture' userAccount.id %}">
 	
 	{% comment %}
-	{% if has_image %}
+
 		<img src="{% url 'getProfilePicture' user.id %}">
-	{% else %}
+
 		<img src= "{% static "cosmo/img/c.png" %}" style="width:200px;height:200px;">
-	{% endif %}
+
 	{% endcomment %}
 	
 	<center><h1>Profile</h1></center>

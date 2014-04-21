@@ -1,53 +1,56 @@
 {% include "yalladevelop/header.html" %}
 
-
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
+	
+	<ol class="carousel-indicators">   
+		<li data-target="#myCarousel" data-slide-to="0" ></li>
+		<li data-target="#myCarousel" data-slide-to="1" ></li>
+		<li data-target="#myCarousel" data-slide-to="2" ></li>
+		<li data-target="#myCarousel" data-slide-to="3" class="active"></li>
+	</ol>
+	
+	<div class="carousel-inner">
+		{% for project in hot_projects %}		
+			<div class="item">
+				<img src="{% url 'getProjectPicture' project.id %}">
+			
+				<div class="container">
+					<div class="carousel-caption">
+						<div class="color">
+							<h2>{{project.name}}</h2>
+							<h5> {{project.description}} </h5>
+						</div>
+						<a class="btn btn-lg btn-info" href="project/{{project.id}}" role="button">Learn more</a>
+					</div>
+				</div>
+			</div>
+		
+		{% endfor %}
+		
         <div class="item active">
-          <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-            {% if logged_in %}
-            <h2> Meet a Member </h2><br> <h4> <a href="/profile/{{random_member.user.id}}">{{random_member}}</a> </h4>
+        <img data-src="holder.js/1200x526/auto/#000:#000/text:{{random_member}}">
+		<div class="container">
+			<div class="carousel-caption">
+				
+				{% if logged_in %}
+					<img src="{% url 'getProfilePicture' random_member.user.id %}">
+            	<h2> Meet a Member </h2><br> <h5> <a href="/profile/{{random_member.user.id}}">{{random_member}}</a> </h5>
             {% else %}
               <h1> Join the innovative communty. </h1>
               <p>Your idea, our help.</p>
-            
               <p><a class="btn btn-lg btn-info" href="/userorcompany/" role="button"> Yalla start here! </a></p>
             {% endif %}
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            <div id="indexslider2">Scroll right to see our hottest Projects </div>
             </div>
           </div>
         </div>
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"></a>
-    </div><!-- /.carousel 
+    </div>
+
+<!-- /.carousel
+{}
 
 
 <!--<ul class="slides">

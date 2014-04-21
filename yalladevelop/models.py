@@ -25,19 +25,19 @@ class Skill(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class UserImage(models.Model):
-	image = models.ImageField(upload_to='uploads/')
-	mimetype = models.CharField(max_length=20)
-	userId = models.IntegerField() # Id of the user it belongs to
-	def __unicode__(self):
-		return "Image belongs to user: "+str(self.userId)
-
-class ProjectImage(models.Model):
-	image = models.ImageField(upload_to='uploads/')
-	mimetype = models.CharField(max_length=20)
-	projectId = models.IntegerField()
-	def __unicode__(self):
-		return "Image belongs to project: "+str(self.projectId)
+# class UserImage(models.Model):
+# 	image = models.ImageField(upload_to='uploads/')
+# 	mimetype = models.CharField(max_length=20)
+# 	userId = models.IntegerField() # Id of the user it belongs to
+# 	def __unicode__(self):
+# 		return "Image belongs to user: "+str(self.userId)
+# 
+# class ProjectImage(models.Model):
+# 	image = models.ImageField(upload_to='uploads/')
+# 	mimetype = models.CharField(max_length=20)
+# 	projectId = models.IntegerField()
+# 	def __unicode__(self):
+# 		return "Image belongs to project: "+str(self.projectId)
 
 class Like(models.Model):
 	project_id = models.IntegerField()

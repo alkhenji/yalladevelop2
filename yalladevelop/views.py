@@ -62,6 +62,8 @@ def getVariables(request,dictionary={}):
 		if logged_in and not admin:
 			dictionary['is_company'] = UserProfile.objects.get(user=user).is_company
 			dictionary['is_premium'] = UserProfile.objects.get(user=user).is_premium
+		if logged_in and admin:
+			dictionary['is_company'] = False
 		return dictionary
 	else:
 		return {'user':user,'logged_in':logged_in,'not_logged_in':not_logged_in,'is_company':user_is_company, 'user_profile': user_profile}
@@ -168,13 +170,6 @@ def showProject(request,project_id=-1):
 			d['complete'] = project.money_collected >= project.target_money
 			d['comments'] = Comment.objects.filter(project_id=project.id)
 			
-			has_image = ProjectImage.objects.filter(projectId=project.id)
-			
-			if has_image:
-				d['has_image'] = has_image[0] # get the first image
-			else:
-				d['has_image'] = False # no image, restore default image
-			
 			if (d['complete']) and (not project.completed): #fixes any un-noticed payments
 				project.completed = True
 				project.save()
@@ -182,10 +177,12 @@ def showProject(request,project_id=-1):
 			if request.user.is_authenticated():
 				user = request.user
 				up = UserProfile.objects.get(user=user)
+				d['userProfile'] = up
+				
 				projectLiked = Like.objects.filter(project_id=project.id,user_id=user.id)
 				
 				d['my_project'] = project.user_id == request.user.id
-				d['userProfile'] = up
+
 				d['username'] = user.username
 				
 				if projectLiked:
@@ -227,10 +224,10 @@ def showProfile(request,profile_id=-1):
 				d['my_profile'] = True
 			else:
 				d['my_profile'] = False
-			if UserImage.objects.filter(userId=userAccount.id):
-				d['has_image'] = True
-			else:
-				d['has_image'] = False
+			# if UserImage.objects.filter(userId=userAccount.id):
+			# 	d['has_image'] = True
+			# else:
+			# 	d['has_image'] = False
 			return render(request,'yalladevelop/profile.html', d)
 		else:
 			return render(request, 'yalladevelop/404.html')

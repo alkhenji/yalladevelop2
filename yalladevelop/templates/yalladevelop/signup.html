@@ -12,34 +12,13 @@
 		Unfortunately, companies can't post projects for funding, we are looking forward to improve the chances of those in need rather than help companies. </p><br/>
 {% endif %}
 	
-	<!--
-	<div id="user_images">
-		<form action="/user_upload/" class="dropzone" id="user_uploader">
-		  <div class="fallback">
-		    <input name="file" type="file" />
-		  </div>
-		</form>
-	</div>
-	-->
-	
-	<!--img class="img-circle" data-src="holder.js/140x140" alt="140x140" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjcwIiB5PSI3MCIgc3R5bGU9ImZpbGw6I2FhYTtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtZmFtaWx5OkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjE0MHgxNDA8L3RleHQ+PC9zdmc+" style="width: 140px; height: 140px;"-->
-	
 	<div class="row">
-		<form action="" method="post" id="user_uploader" enctype="multipart/form-data">
-			<div class="col-md-4">
-				<!--div id="user_image_preview">No image uploaded yet</div-->
-				<!--input name="image" type="file"/-->
-			</div>
-			
-			<!--div class="col-md-8"-->
-				<div class="jumbotron">
-					<div id="user_signup_form">
-						{{ form.as_p }}
-					</div>
-					<input class="btn btn-success" type="submit" value="Create Account">
-				</div>
-			<!--/div-->
-		</form>
+		<div class="jumbotron">
+			<form action="" method="post" id="user_uploader" enctype="multipart/form-data" class="form-horizontal">
+				{{ form.as_p }}
+				<input class="btn btn-success" type="submit" value="Create Account">
+			</form>
+		</div>
 	</div>
 	<br/>
 

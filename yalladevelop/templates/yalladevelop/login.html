@@ -14,7 +14,7 @@
 	<form method="post" action="{% url 'django.contrib.auth.views.login'  %}" class="form-horizontal">
 		<fieldset>
 			{% if form.errors %}
-				<p>Your username and password didn't match. Please try again.</p>
+				<p>Your username and password don't match our records. Please try again.</p>
 			{% endif %}
 			<div class="form-group">
 				<label for="username" class="col-lg-2 control-label">Username: </label>

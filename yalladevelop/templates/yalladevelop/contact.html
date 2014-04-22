@@ -1,28 +1,15 @@
 {% include "yalladevelop/header.html" %}
 
- <div id="templatemo_about" class="section3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="secHeader">
-              <h1 class="text-center">Contact Us </h1>
-              <p class="text-center">
-	           <div id="form"><form action="/contact/" method="post">
-		{% csrf_token %}
-		{{ form.as_p}}
-		<input type="submit" class="btn btn-primary" value="Submit" />
 
-	</form></div>
-	<br/>
-	</p>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-<!--Name: We can address you personally the next time we communicate with you.<br/>
-	Subject: It helps us understand the content of your message and better sort suggestions, ideas, comments and feedback accoridngly.<br/>
-	Message: Explain your idea, suggestion, comment or compplain briefly and in details. The more we understand you the better we can help you.<br/>
-	Sender: Include your email so that we can reply directly to you and let you know that we've fixed your problem, improve according to your suggestions or we deployed your idea!<br/>-->
+	<h1 class="text-center">Contact Us </h1>
+
+
+<div class="jumbotron">
+	<form action="/contact/" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" class="btn btn-primary" value="Submit">
+	</form>
+</div>
 
 {% include "yalladevelop/footer.html" %}

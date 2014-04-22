@@ -1,16 +1,15 @@
 {% include "yalladevelop/header.html" %}
 
-<div class="col-md-12">
-            <div class="secHeader">
-              <h1 class="text-center">Project Settings</h1>
+
+<h1 class="text-center">Project Settings</h1>
+<div class="jumbotron">
+	<h3><strong>Editing project:</strong> {{project.name}} </h3><br/>
 	<form action="/project/{{project.id}}/edit" method="POST">
-		<h6> <strong>{{user.username}}</strong></h6>
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" value="Submit" />
 	</form>
-<br/>
-</div>
+	<br/>
 </div>
 
 {% include "yalladevelop/footer.html" %}

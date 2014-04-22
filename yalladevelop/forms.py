@@ -1,4 +1,5 @@
 from django import forms
+#from django.forms import
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from yalladevelop.models import Skill, UserProfile
@@ -6,19 +7,19 @@ from yalladevelop.models import Skill, UserProfile
 from django.core.mail import send_mail
 
 class ContactForm(forms.Form):
-	name = forms.CharField(max_length=100,required=True)
-	sender = forms.EmailField(required=True, label="Email")
-	subject = forms.CharField(max_length=100,required=True)
-	message = forms.CharField(required=True)
-	cc_myself = forms.BooleanField(label="CC Myself?",required=False)
+	name = forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"Your Name"}))
+	sender = forms.EmailField(required=True, label="Email",widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':"Your Email Address"}))
+	subject = forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"What is your concern?"}))
+	message = forms.CharField(required=True,widget=forms.Textarea(attrs={'class': 'form-control','placeholder':"Your message here"}))
+	cc_myself = forms.BooleanField(label="Would you like to be cc'ed on the email?",required=False)
 
 
 class ForgotForm(forms.Form):
-	email = forms.EmailField(required=False)
+	email = forms.EmailField(required=False, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"The email you registered with"}))
 
 
 class DonateForm(forms.Form):
-	amount = forms.IntegerField(required=True)
+	amount = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
 	
 	def make_payment(request):
 		print request
@@ -30,14 +31,14 @@ class DonateForm(forms.Form):
 
 
 class AddForm(forms.Form):
-	project_name = forms.CharField(max_length=100, required=True)
-	description = forms.CharField(required=True)
-	target_money = forms.IntegerField(required=True)
-	image = forms.ImageField(required=True)
+	project_name = forms.CharField(max_length=100, required=True,widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"Project Name"}))
+	description = forms.CharField(required=True,widget=forms.Textarea(attrs={'class': 'form-control','placeholder':"Your project description."}))
+	target_money = forms.IntegerField(required=True,widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"e.g. 10000"}))
+	image = forms.ImageField(required=True,help_text="Images are required. Upload an image of the concept or the wireframes of your project, and bring it to life!",widget=forms.FileInput(attrs={'class': 'form-control','placeholder':"e.g. 10000"}))
 	
 class EditForm(forms.Form):
-	project_name = forms.CharField(max_length=100, required=True)
-	description = forms.CharField(required=True)
+	project_name = forms.CharField(max_length=100, required=True,widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"Project Name"}))
+	description = forms.CharField(required=True,widget=forms.Textarea(attrs={'class': 'form-control','placeholder':"Your project description."}))
 	
 	def update(self,d):
 		project = d['project']
@@ -47,8 +48,8 @@ class EditForm(forms.Form):
 
 
 class UserCreateForm(UserCreationForm):
-	name = forms.CharField(max_length=200,help_text="Your full name")
-	email = forms.EmailField(required=True)
+	name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'FirstName LastName'}))
+	email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Please enter a valid email address so we can reach you.'}))
 	a = forms.BooleanField(label="Python, Django",required=False)
 	b = forms.BooleanField(label="Java, Javascript",required=False)
 	c = forms.BooleanField(label="C, C++, C#", required=False)
@@ -60,7 +61,11 @@ class UserCreateForm(UserCreationForm):
 	i = forms.BooleanField(label="Adobe Photoshop, Illustrator",required=False)
 	j = forms.BooleanField(label="SQL Databases",required=False)
 	
-	image = forms.ImageField(required=True)
+	username = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Your username (Only letters and numbers, no spaces allowed)'}))
+	password1 = forms.CharField(label="Password", max_length=200, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'For your security, we will never store your password as text.'}))
+	password2 = forms.CharField(label="Password Confirmation", max_length=200, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Password Confirmation'}))
+	
+	image = forms.ImageField(required=True, widget=forms.FileInput(attrs={'class': 'form-control'}))
 	
 	class Meta:
 		model = User
@@ -110,11 +115,13 @@ class UserCreateForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.Form):
-	name = forms.CharField(max_length=200,help_text="First and Last name please.")
-	email = forms.EmailField(help_text="Enter your email address",required=True)
-	password1 = forms.CharField(label="Old Password",widget=forms.PasswordInput,help_text="Required to save any changes.",required=False)
-	password2 = forms.CharField(label="New Password?",widget=forms.PasswordInput,help_text="Only enter new password if you want to change it.",required=False)
-	password3 = forms.CharField(label="Confirm New Password",widget=forms.PasswordInput,required=False)
+	name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'FirstName LastName'}))
+	email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Please enter a valid email address so we can reach you. No spam. Ever.'}))
+	
+	password1 = forms.CharField(label="Old Password",widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Enter your password to save the changes.'}),required=False)
+	password2 = forms.CharField(label="New Password?",widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Only enter new password if you want to change it.'}),required=False)
+	password3 = forms.CharField(label="Confirm New Password",widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Confirm New Password'}),required=False)
+	
 	a = forms.BooleanField(label="Python, Django",required=False)
 	b = forms.BooleanField(label="Java, Javascript",required=False)
 	c = forms.BooleanField(label="C, C++, C#", required=False)
@@ -187,10 +194,13 @@ class UserUpdateForm(forms.Form):
 
 
 class CompanyCreateForm(UserCreationForm):
-	name = forms.CharField(max_length=200,help_text="Company's Name")
-	email = forms.EmailField(required=True)
-	#image = forms.ImageField(required=False,label="Profile Picture",error_messages={'required':"Please upload a picture for your profile",'invalid':"Sorry, the file you uploaded is not allowed, try a different image."})
-	image = forms.ImageField(required=True)
+	name = forms.CharField(max_length=200,help_text="Company's Name", widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"Company's Email"}))
+	email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"Company's Email"}))
+	image = forms.ImageField(required=True, widget=forms.FileInput(attrs={'class': 'form-control'}))
+	
+	username = forms.CharField(max_length=200, help_text="Company's Name", widget=forms.TextInput(attrs={'class': 'form-control','placeholder':"Company's Username"}))
+	password1 = forms.CharField(label="Password",max_length=200, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'For your security, we will never store your password as text.'}))
+	password2 = forms.CharField(label="Password Confirmation",max_length=200, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Password Confirmation'}))
 	
 	class Meta:
 		model = User
@@ -207,12 +217,12 @@ class CompanyCreateForm(UserCreationForm):
 			userProfile.save()
 		return user
 
-class CompanyUpdateForm(forms.Form):
-	name = forms.CharField(max_length=200,help_text="Change Company's Name?")
-	email = forms.EmailField(required=True)
-	password1 = forms.CharField(label="Old Password",widget=forms.PasswordInput,help_text="Required to save any changes.",required=False)
-	password2 = forms.CharField(label="New Password?",widget=forms.PasswordInput,help_text="Only enter new password if you want to change it.",required=False)
-	password3 = forms.CharField(label="Confirm New Password",widget=forms.PasswordInput,required=False)
+class CompanyUpdateForm(forms.Form):	
+	name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'FirstName LastName'}))
+	email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Please enter a valid email address so we can reach you. No spam. Ever.'}))
+	password1 = forms.CharField(label="Old Password",widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Enter your password to save the changes.'}),required=False)
+	password2 = forms.CharField(label="New Password?",widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Only enter new password if you want to change it.'}),required=False)
+	password3 = forms.CharField(label="Confirm New Password",widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Confirm New Password'}),required=False)
 	
 	class Meta:
 		fields = ("name","email","password1","password2",'password3')
